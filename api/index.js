@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRoute from "./routes/auth.js";
+import cinemasRoute from "./routes/cinemas.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -26,9 +28,9 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
-// app.use("/api/auth", authRoute);
+app.use("/api/auth", authRoute);
 // app.use("/api/users", usersRoute);
-// app.use("/api/cinemas", cinemasRoute);
+app.use("/api/cinemas", cinemasRoute);
 // app.use("/api/movies", moviesRoute);
 // app.use("/api/rooms", roomsRoute);
 
