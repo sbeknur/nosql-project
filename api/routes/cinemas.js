@@ -1,5 +1,7 @@
 import express from "express";
 import {
+    countByCity,
+    countByType,
     createCinema,
     deleteCinema,
     getCinema,
@@ -17,8 +19,11 @@ router.put("/:id", verifyToken, verifyAdmin, updateCinema);
 //DELETE
 router.delete("/:id", verifyToken, verifyAdmin, deleteCinema);
 //GET
-router.get("/:id", verifyToken, getCinema);
+router.get("/find:id", verifyToken, getCinema);
 //GET All
 router.get("/", getCinemas);
+
+router.get("/countByCity", countByCity);
+router.get("/countByType", countByType);
 
 export default router;

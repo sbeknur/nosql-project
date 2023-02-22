@@ -1,53 +1,53 @@
-import Cinema from "../models/Cinema.js";
+import Movie from "../models/Movie.js";
 
-export const createCinema = async (req, res, next) => {
-    const newCinema = new Cinema(req.body);
+export const createMovie = async (req, res, next) => {
+    const newMovie = new Movie(req.body);
 
     try {
-        const savedCinema = await newCinema.save();
-        res.status(200).json(savedCinema);
+        const savedMovie = await newMovie.save();
+        res.status(200).json(savedMovie);
     } catch (err) {
         next(err);
     }
 };
 
-export const updateCinema = async (req, res, next) => {
+export const updateMovie = async (req, res, next) => {
     try {
-        const updatedCinema = await Cinema.findByIdAndUpdate(
+        const updatedMovie = await Movie.findByIdAndUpdate(
             req.params.id,
             {
                 $set: req.body,
             },
             { new: true }
         );
-        res.status(200).json(updatedCinema);
+        res.status(200).json(updatedMovie);
     } catch (err) {
         next(err);
     }
 };
 
-export const deleteCinema = async (req, res, next) => {
+export const deleteMovie = async (req, res, next) => {
     try {
-        await Cinema.findByIdAndDelete(req.params.id);
-        res.status(200).json("Cinema has been deleted");
+        await Movie.findByIdAndDelete(req.params.id);
+        res.status(200).json("Movie has been deleted");
     } catch (err) {
         next(err);
     }
 };
 
-export const getCinema = async (req, res, next) => {
+export const getMovie = async (req, res, next) => {
     try {
-        const cinema = await Cinema.findById(req.params.id);
-        res.status(200).json(cinema);
+        const movie = await Movie.findById(req.params.id);
+        res.status(200).json(movie);
     } catch (err) {
         next(err);
     }
 };
 
-export const getCinemas = async (req, res, next) => {
+export const getMovies = async (req, res, next) => {
     try {
-        const cinemas = await Cinema.find(req.params.id);
-        res.status(200).json(cinemas);
+        const movies = await Movie.find(req.params.id).limit(req.query.limit);
+        res.status(200).json(movies);
     } catch (err) {
         next(err);
     }
