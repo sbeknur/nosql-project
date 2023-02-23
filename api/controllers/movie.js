@@ -46,7 +46,7 @@ export const getMovie = async (req, res, next) => {
 
 export const getMovies = async (req, res, next) => {
     try {
-        const movies = await Movie.find(req.params.id);
+        const movies = await Movie.find(req.params.id).limit(req.query.limit);
         res.status(200).json(movies);
     } catch (err) {
         next(err);
